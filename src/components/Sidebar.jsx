@@ -8,7 +8,6 @@ function Sidebar() {
   return (
     <div className={styles.sidebar}>
       <Logo />
-
       <AppNav />
 
       <Outlet />
