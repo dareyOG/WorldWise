@@ -26,6 +26,7 @@ function App() {
             element={<CityList cities={cities} isLoading={isLoading} />}
           /> */}
             <Route index element={<Navigate to="cities" replace />} />
+
             <Route path="cities" element={<CityList />} />
             <Route path="cities/:id" element={<City />} />
             <Route path="countries" element={<CountryList />} />
