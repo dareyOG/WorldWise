@@ -2,6 +2,7 @@ import styles from './City.module.css';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useCities } from '../contexts/CitiesContext';
+import Spinner from './Spinner';
 
 const formatDate = date =>
   new Intl.DateTimeFormat('en', {
@@ -19,7 +20,7 @@ function City() {
   // const lat = searchParams.get('lat');
   // const lng = searchParams.get('lng');
 
-  const { currentCity, getCity } = useCities();
+  const { currentCity, getCity, isLoading } = useCities();
 
   // TEMP DATA
   // const currentCity = {
@@ -29,7 +30,7 @@ function City() {
   //   notes: 'My favorite city so far!',
   // };
 
-  // get city
+  // get current city
   useEffect(
     function () {
       getCity(id);
@@ -38,6 +39,8 @@ function City() {
   );
 
   const { cityName, emoji, date, notes } = currentCity;
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className={styles.city}>
