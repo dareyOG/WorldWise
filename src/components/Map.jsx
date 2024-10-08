@@ -12,23 +12,24 @@ import { useCities } from '../contexts/CitiesContext';
 import styles from './Map.module.css';
 import { useGeolocation } from '../hooks/useGeolocation';
 import Button from './Button';
+import { useURLPosition } from '../hooks/useURLPosition';
 
 function Map() {
   // const navigate = useNavigate();
 
   // set map position (lng, lat)
-  const [mapPosition, setMapPosition] = useState([40, 0]);
+  const [mapPosition, setMapPosition] = useState([51.505, -0.09]);
   // log lat & lng from URL
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
+  const { lat: mapLat, lng: mapLng } = useURLPosition();
   const {
     getPosition,
     isLoading: isLoadingPosition,
-    error,
     position: geoPosition,
   } = useGeolocation();
 
-  const mapLat = searchParams.get('lat');
-  const mapLng = searchParams.get('lng');
+  // const mapLat = searchParams.get('lat');
+  // const mapLng = searchParams.get('lng');
 
   const { cities } = useCities();
   // console.log(cities);
