@@ -25,7 +25,9 @@
   right: 1rem;
   top: 2.7rem;
   font-size: 2.8rem;
-  color: red; /* since flag emoji is not supported on windows */
+  color: var(
+    --color-brand--2
+  ); /* since flag emoji is not supported on windows */
 }
 
 .form.loading {

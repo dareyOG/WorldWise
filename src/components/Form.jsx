@@ -1,6 +1,8 @@
 // "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
 
 import { useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import Button from './Button';
 import styles from './Form.module.css';
 import BackButton from './BackButton';
@@ -27,7 +29,6 @@ function Form() {
   const [country, setCountry] = useState('');
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState('');
-
   const { lat, lng } = useURLPosition();
   const [emoji, setEmoji] = useState('');
   const [geocodingError, setGeocodingError] = useState('');
@@ -37,6 +38,7 @@ function Form() {
       async function fetchCityData() {
         try {
           setIsLoadingGeoCoding(true);
+          setGeocodingError('');
           const res = await fetch(
             `${BASE_URL}?latitude=${lat}&longitude=${lng}`
           );
@@ -60,6 +62,8 @@ function Form() {
     [lat, lng]
   );
 
+  if (!lat && !lng)
+    return <Message message="Start by clicking somewhere on the map" />;
   if (isLoadingGeocoding) return <Spinner />;
   if (geocodingError) return <Message message={geocodingError} />;
   return (
@@ -76,7 +80,13 @@ function Form() {
 
       <div className={styles.row}>
         <label htmlFor="date">When did you go to {cityName}?</label>
-        <input id="date" onChange={e => setDate(e.target.value)} value={date} />
+        {/* <input id="date" onChange={e => setDate(e.target.value)} value={date} /> */}
+        <DatePicker
+          id="date"
+          selected={date}
+          onChange={date => setDate(date)}
+          dateFormat="dd/MM/YYYY"
+        />
       </div>
 
       <div className={styles.row}>

@@ -106,7 +106,7 @@ function Map() {
 function ChangeCenter({ position }) {
   const map = useMap();
   map.setView(position);
-  return;
+  return null;
 }
 
 // display form on map click
@@ -119,6 +119,7 @@ function ClickMap() {
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
     },
   });
+  return null;
 }
 
 export default Map;
