@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react';
+import { json } from 'react-router-dom';
 
 const BASE_URL = 'http://localhost:8000';
 
@@ -40,8 +41,30 @@ function CitiesProvider({ children }) {
     }
   }
 
+  // store new city data to API
+  async function createNewCity(newCity) {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/cities`, {
+        method: 'POST',
+        body: JSON.stringify(newCity),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await res.json();
+      console.log(data);
+      // update city list
+      setCities(cities => [...cities, data]);
+    } catch (error) {
+      alert('There was an error loading data...');
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
-    <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity }}>
+    <CitiesContext.Provider
+      value={{ cities, isLoading, currentCity, getCity, createNewCity }}
+    >
       {children}
     </CitiesContext.Provider>
   );
