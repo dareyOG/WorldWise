@@ -79,8 +79,7 @@ function Form() {
     // create city
     await createNewCity(newCity);
     // navigate back to city list
-    navigate('/app/cities');
-    // navigate to cities just after creating new city, hence asyn-await
+    navigate('/app/cities'); // navigate to cities just after creating new city, hence asyn-await
   };
 
   if (!lat && !lng)
