@@ -1,6 +1,18 @@
 {
   "cities": [
     {
+      "cityName": "Madrid",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2027-07-15T08:22:53.976Z",
+      "notes": "",
+      "position": {
+        "lat": 40.46635901755316,
+        "lng": -3.7133789062500004
+      },
+      "id": 17806751
+    },
+    {
       "cityName": "Lisbon",
       "country": "Portugal",
       "emoji": "🇵🇹",
@@ -10,7 +22,55 @@
         "lat": 38.727881642324164,
         "lng": -9.140900099907554
       },
-      "id": "73930385"
+      "id": 73930385
+    },
+    {
+      "cityName": "Berlin",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2027-02-12T09:24:11.863Z",
+      "notes": "Amazing 😃",
+      "position": {
+        "lat": 52.53586782505711,
+        "lng": 13.376933665713324
+      },
+      "id": 98443197
+    },
+    {
+      "id": "5836",
+      "cityName": "Horselberg-Hainich",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2024-10-18T18:02:18.291Z",
+      "notes": "",
+      "position": {
+        "lat": "50.99301440979523",
+        "lng": "10.469970703125002"
+      }
+    },
+    {
+      "id": "9510",
+      "cityName": "Lelow",
+      "country": "Poland",
+      "emoji": "🇵🇱",
+      "date": "2024-10-18T18:02:33.941Z",
+      "notes": "",
+      "position": {
+        "lat": "50.75035931136963",
+        "lng": "19.577636718750004"
+      }
+    },
+    {
+      "id": "9df5",
+      "cityName": "Badia Tedalda",
+      "country": "Italy",
+      "emoji": "🇮🇹",
+      "date": "2024-10-18T18:03:01.044Z",
+      "notes": "",
+      "position": {
+        "lat": "43.691707903073805",
+        "lng": "12.23876953125"
+      }
     }
   ]
 }
