@@ -72,7 +72,6 @@ function CitiesProvider({ children }) {
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
         // setCities(data);
-        console.log(data);
         dispatch({ type: 'cities/loaded', payload: data });
       } catch (error) {
         // alert('There was an error loading data...');
@@ -92,7 +91,7 @@ function CitiesProvider({ children }) {
 
   // fetch currentCity data
   async function getCity(id) {
-    console.log(id, currentCity.id);
+    // console.log(id, currentCity.id);
     if (id === currentCity.id) return;
 
     dispatch({ type: 'loading' });
