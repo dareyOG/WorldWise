@@ -90,7 +90,7 @@ function CitiesProvider({ children }) {
   // =========== Handlers ============
 
   // fetch currentCity data
-  async function getCity(id) {
+  const getCity = async id => {
     // console.log(id, currentCity.id);
     if (id === currentCity.id) return;
 
@@ -111,10 +111,10 @@ function CitiesProvider({ children }) {
     // finally {
     // setIsLoading(false);
     // }
-  }
+  };
 
   // store new city data to API
-  async function createNewCity(newCity) {
+  const createNewCity = async newCity => {
     dispatch({ type: 'loading' });
     try {
       // setIsLoading(true);
@@ -138,10 +138,10 @@ function CitiesProvider({ children }) {
     // finally {
     // setIsLoading(false);
     // }
-  }
+  };
 
   // remove city data from API
-  async function deleteCity(id) {
+  const deleteCity = async id => {
     dispatch({ type: 'loading' });
     try {
       // setIsLoading(true);
@@ -161,7 +161,7 @@ function CitiesProvider({ children }) {
     // finally {
     // setIsLoading(false);
     // }
-  }
+  };
 
   return (
     <CitiesContext.Provider

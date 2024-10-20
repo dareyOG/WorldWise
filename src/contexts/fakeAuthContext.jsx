@@ -34,14 +34,16 @@ function AuthProvider({ children }) {
     initialState
   );
 
-  function logIn(email, password) {
+  // logIn
+  const logIn = (email, password) => {
     if (email === FAKE_USER.email && password === FAKE_USER.password)
       dispatch({ type: 'log_in', payload: FAKE_USER });
-  }
+  };
 
-  function logOut() {
+  // logOut
+  const logOut = () => {
     dispatch({ type: 'log_out' });
-  }
+  };
 
   return (
     <AuthContext.Provider value={{ user, isAuthenticated, logIn, logOut }}>
