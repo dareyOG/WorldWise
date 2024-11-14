@@ -4,6 +4,7 @@ import {
   useEffect,
   useContext,
   useReducer,
+  useCallback,
 } from 'react';
 // import { json } from 'react-router-dom';
 
@@ -28,7 +29,6 @@ function reducer(state, action) {
 
     case 'city/loaded':
       return { ...state, isLoading: false, currentCity: action.payload };
-
     case 'city/created':
       return {
         ...state,
@@ -61,7 +61,7 @@ function CitiesProvider({ children }) {
 
   const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
     reducer,
-    initialState
+    initialState,
   );
 
   useEffect(function () {
@@ -90,28 +90,31 @@ function CitiesProvider({ children }) {
   // =========== Handlers ============
 
   // fetch currentCity data
-  const getCity = async id => {
-    // console.log(id, currentCity.id);
-    if (id === currentCity.id) return;
+  const getCity = useCallback(
+    async id => {
+      // console.log(id, currentCity.id);
+      if (id === currentCity.id) return;
 
-    dispatch({ type: 'loading' });
-    try {
-      // setIsLoading(true);
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
-      // setCurrentCity(data);
-      dispatch({ type: 'city/loaded', payload: data });
-    } catch (error) {
-      // alert('There was an error loading data');
-      dispatch({
-        type: 'rejected',
-        payload: 'There was an error loading city data',
-      });
-    }
-    // finally {
-    // setIsLoading(false);
-    // }
-  };
+      dispatch({ type: 'loading' });
+      try {
+        // setIsLoading(true);
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json();
+        // setCurrentCity(data);
+        dispatch({ type: 'city/loaded', payload: data });
+      } catch (error) {
+        // alert('There was an error loading data');
+        dispatch({
+          type: 'rejected',
+          payload: 'There was an error loading city data',
+        });
+      }
+      // finally {
+      // setIsLoading(false);
+      // }
+    },
+    [currentCity.id],
+  );
 
   // store new city data to API
   const createNewCity = async newCity => {
@@ -184,7 +187,7 @@ function useCities() {
   const context = useContext(CitiesContext);
   if (context === undefined)
     throw new Error(
-      'CitiesContext was used outside of the CitiesProvider scope'
+      'CitiesContext was used outside of the CitiesProvider scope',
     );
   return context;
 }
